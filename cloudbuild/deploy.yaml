@@ -1,0 +1,29 @@
+steps:
+# copied from #cloudbuild/build.yaml since this image needs to exist before we can deploy
+- id: 'build container'
+  name: 'gcr.io/kaniko-project/executor:latest'
+  args:
+  - --destination=us-central1-docker.pkg.dev/$PROJECT_ID/docker/chatlearnings:$SHORT_SHA
+  - --context=src/
+  - --cache=true
+  - --cache-ttl=6h
+
+- id: 'build yaml'
+  name: 'us-central1-docker.pkg.dev/chatlearnings/docker/kustomize:v5.4.2'
+  script: |
+    #!/bin/sh
+    cd kustomize && mkdir out
+    kustomize edit set image chatlearnings=us-central1-docker.pkg.dev/$PROJECT_ID/docker/chatlearnings:$SHORT_SHA
+    kustomize edit set namesuffix $_ENV
+    kustomize edit set namespace $PROJECT_NUMBER
+    kustomize build --output out/cloudrun.yaml
+    sed -i.bak "s/CLOUDRUN_SA/$_CLOUD_RUN_SERVICE_ACCOUNT/g" out/cloudrun.yaml
+  waitFor: ['-']
+
+- id: 'deploy cloud run'
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'services', 'replace', 'kustomize/out/cloudrun.yaml']
+
+options:
+  automapSubstitutions: true
+  logging: CLOUD_LOGGING_ONLY

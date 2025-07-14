@@ -1,5 +1,6 @@
 dotenv
 fastapi
+fastapi[standard]
 uvicorn
 langchain
 langgraph

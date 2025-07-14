@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 EXPOSE 8080
-CMD ["fastapi", "run", "./api.py"]
+CMD ["fastapi", "run", "./api.py", "--port=8080"]

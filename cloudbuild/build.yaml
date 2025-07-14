@@ -2,7 +2,7 @@ steps:
 - name: 'gcr.io/kaniko-project/executor:latest'
   args:
   - --destination=us-central1-docker.pkg.dev/$PROJECT_ID/docker/chatlearnings:$SHORT_SHA
-  - --context=src/
+  - --context=backend/
   - --cache=true
   - --cache-ttl=720h
 

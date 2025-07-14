@@ -1,0 +1,14 @@
+services:
+  terraform: &terraform
+    build: terraform
+    volumes:
+      - ./terraform:/workspace
+      - ~/.config/gcloud/legacy_credentials/${GCLOUD_ACCOUNT}:/root/.config/gcloud
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /root/.config/gcloud/adc.json
+      TF_VAR_IMPERSONATE_SERVICE_ACCOUNT: ${IMPERSONATE_SERVICE_ACCOUNT}
+    working_dir: /workspace/envs
+    entrypoint: /bin/bash
+    # prevent this from running with `docker-compose up`
+    profiles:
+      - terraform

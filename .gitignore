@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env.*
+.venv/
+venv/
+ENV/
+build/
+dist/
+.eggs/
+*.egg-info/
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Google Cloud credentials
+*.json
+
+# Local data
+backend/.env.local
+backend/.env
+
+# Coverage
+htmlcov/
+.coverage
+
+# Logs
+*.log
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform.lock.hcl
+
+# Node
+node_modules/
+
+# Misc
+*.bak
+*.swp
+*.swo

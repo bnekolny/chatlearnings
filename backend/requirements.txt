@@ -1,0 +1,7 @@
+dotenv
+fastapi
+uvicorn
+langchain
+langgraph
+langchain_google_genai
+google-cloud-storage

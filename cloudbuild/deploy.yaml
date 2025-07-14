@@ -9,7 +9,7 @@ steps:
   - --cache-ttl=6h
 
 - id: 'build yaml'
-  name: 'us-central1-docker.pkg.dev/chatlearnings/docker/kustomize:v5.4.2'
+  name: 'us-central1-docker.pkg.dev/chatparser/docker/kustomize:v5.4.2'
   script: |
     #!/bin/sh
     cd kustomize && mkdir out

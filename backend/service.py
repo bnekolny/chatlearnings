@@ -4,7 +4,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, END
 from typing import Optional
 from pydantic import BaseModel
-from backend.storage_service import GCSFactStorage
+from storage_service import GCSFactStorage
 
 # Pydantic state schema
 class LLMState(BaseModel):

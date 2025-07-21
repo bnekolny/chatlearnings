@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from .models import TopicRequest, Task
-from .service import generate_content_for_task
+from models import TopicRequest, Task
+from service import generate_content_for_task
 import os
 from dotenv import load_dotenv
 
